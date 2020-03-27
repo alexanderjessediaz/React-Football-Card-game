@@ -1,19 +1,21 @@
-import React from 'react';
-import PlayerCard from "../PlayerCard"
+import React, { Component } from 'react';
+import PlayerCard from "../components/Player Card by Postion/PlayerCard"
 
-export default function GameBoard(props){
 
-    const dt_players = props.dt_cards.map(player => {
-        return <PlayerCard key={player.id} dt_cards={player}/>
-    })
+ class GameBoard extends Component{
+    
+    showPlayerCards = () => {
+        return this.props.player_cards.map(card => {
+            return <PlayerCard key={card.id} player_card_click={this.props.player_card_click} player_card={card}/>
+        })
+    }
 
-    // const guard_players = props.guard_cards.map(player => {
-    //     return <PlayerCard key={player.id} guard_cards={player}/>
-    // })
-
-    return (
-        <div className="player-card-container">
-            {dt_players}
-        </div>
-    )
+    render(){                                     
+        return (
+            <div className="player-card-container">
+                {this.showPlayerCards()}
+            </div>
+        )
+    }
 }
+export default GameBoard;
